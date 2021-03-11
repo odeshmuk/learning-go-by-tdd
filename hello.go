@@ -7,12 +7,21 @@ func hello() string {
 }
 
 const englishHelloPrefix = "Hello "
+const spanishHelloPrefix = "Hola "
+const frenchHelloPrefix = "Bonjour "
 
-func helloName(name string) string {
+func helloName(name string, language string) string {
+	var prefix = englishHelloPrefix
 	if name == "" {
 		name = "Stranger"
 	}
-	return englishHelloPrefix + name
+	if language == "Spanish" {
+		prefix = spanishHelloPrefix
+	}
+	if language == "French" {
+		prefix = frenchHelloPrefix
+	}
+	return prefix + name
 }
 
 func main() {
