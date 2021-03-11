@@ -20,3 +20,25 @@ func TestHelloName(t *testing.T) {
 	}
 
 }
+
+func TestHelloMultiple(t *testing.T) {
+	assertCorrectMessage := func(t testing.TB, got, want string) {
+		t.Helper()
+		if got != want {
+			t.Errorf("got %q want %q", got, want)
+		}
+	}
+
+	t.Run("Testing with a regular name", func(t *testing.T) {
+		got := helloName("Omkar")
+		want := "Hello Omkar"
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("Testing with an empty name", func(t *testing.T) {
+		got := helloName("")
+		want := "Hello Stranger"
+		assertCorrectMessage(t, got, want)
+	})
+
+}
