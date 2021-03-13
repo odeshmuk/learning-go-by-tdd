@@ -18,3 +18,13 @@ func Sum(numbers []int) int {
 	}
 	return sum
 }
+
+//Using variadic functions to pass slice list of any number
+func SumAll(numbersToSum ...[]int) []int {
+	lengthOfNumberSlicesPassed := len(numbersToSum)
+	sums := make([]int, lengthOfNumberSlicesPassed)
+	for i, numbers := range numbersToSum {
+		sums[i] = Sum(numbers)
+	}
+	return sums
+}
