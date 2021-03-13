@@ -21,10 +21,21 @@ func Sum(numbers []int) int {
 
 //Using variadic functions to pass slice list of any number
 func SumAll(numbersToSum ...[]int) []int {
-	lengthOfNumberSlicesPassed := len(numbersToSum)
-	sums := make([]int, lengthOfNumberSlicesPassed)
-	for i, numbers := range numbersToSum {
-		sums[i] = Sum(numbers)
+
+	var sums []int
+	for _, numbers := range numbersToSum {
+		sums = append(sums, Sum(numbers))
 	}
 	return sums
+}
+
+//Sum of tails ie leaving the 1st element in the slice out
+func SumTails(numberTailsToSum ...[]int) int {
+	sumOfTails := 0
+	for _, numbers := range numberTailsToSum {
+		if len(numbers) != 0 {
+			sumOfTails += Sum(numbers[1:])
+		}
+	}
+	return sumOfTails
 }
