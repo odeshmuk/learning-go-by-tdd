@@ -23,6 +23,10 @@ func TestPerimeter(t *testing.T) {
 		circle := Circle{10.0}
 		checkPerimeter(t, circle, 62.83185307179586)
 	})
+	t.Run("Testing Triangle Perimeter", func(t *testing.T) {
+		triangle := Triangle{3.0, 4.0}
+		checkPerimeter(t, triangle, 12.0)
+	})
 }
 
 func TestArea(t *testing.T) {
@@ -45,21 +49,22 @@ func TestArea(t *testing.T) {
 
 	})
 
+	t.Run("Triangle Area", func(t *testing.T) {
+		triangle := Triangle{3, 4}
+		checkArea(t, triangle, 6)
+
+	})
+
 }
 
-func BenchmarkPerimeter(b *testing.B) {
-
-	rectangle := Rectangle{12.0, 6.0}
-	rectangle.Perimeter()
-
-	circle := Circle{10.0}
-	circle.Perimeter()
+func BenchmarkAreaAndPerimeter(b *testing.B) {
 
 	benchmarksTable := []struct {
 		shape Shape
 	}{
 		{Rectangle{12.0, 6.0}},
 		{Circle{10.0}},
+		{Triangle{10.0, 5.0}},
 	}
 	for _, shapeInstance := range benchmarksTable {
 		shapeInstance.shape.Perimeter()
