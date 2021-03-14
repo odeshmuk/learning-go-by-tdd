@@ -1,6 +1,9 @@
 package pointerserrors
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Bitcoin int
 
@@ -24,6 +27,11 @@ func (w *Wallet) Balance() Bitcoin {
 	return w.balance
 }
 
-func (w *Wallet) Withdraw(amount Bitcoin) {
+func (w *Wallet) Withdraw(amount Bitcoin) error {
+	if w.balance < amount {
+		return errors.New("error, you can't withdraw an amount more than you have")
+	}
 	w.balance -= amount
+
+	return nil
 }
