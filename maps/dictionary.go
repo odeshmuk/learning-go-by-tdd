@@ -6,7 +6,7 @@ import "errors"
 type Dictionary map[string]string
 
 //defining an error type for errors not found
-var ErrNotFound = errors.New("could not find the word you were looking for")
+var ErrNotFound = errors.New("could not find the word you were searching")
 
 //returns the result,error as part of this func
 func (dictionary Dictionary) Search(key string) (string, error) {
